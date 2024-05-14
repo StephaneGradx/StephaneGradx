@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %} {% if user.is_authenticated %}
+
+<p>
+  Heureux de vous revoir : {{user.username}} |
+  <a href="{% url 'logout' %}">Deconnexion</a>
+</p>
+<a href="{% url 'add_courrier' %}"><button>Nouveau Courrier</button></a>
+
+{% else %}
+<p><a href="{% url 'login' %}">Connectez-vous</a></p>
+{% endif %} {% if courrier.id %}
+
+<a href="{% url 'courrier_detail' pk=courrier.id %}">
+  <button>Voir détails</button>
+</a>
+
+{% endif %}
+
+<h1>Liste des rappels</h1>
+{% for rappel in rappels %}
+<br />{{ rappel.date_rappel }} - {{ rappel.description }}
+<a href="{% url 'update_rappel' rappel.id %}"><button>Modifier</button></a>
+<a href="{% url 'delete_rappel' rappel.id %}"><button>Supprimer</button></a>
+
+{% endfor %} {% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %}
+
+<h1>Détails du courrier</h1>
+<p><strong>Expéditeur:</strong> {{ courrier.expediteur }}</p>
+<p><strong>Destinataire:</strong> {{ courrier.destinataire }}</p>
+<p><strong>Sujet:</strong> {{ courrier.sujet }}</p>
+<p><strong>Description:</strong> {{ courrier.description }}</p>
+<p><strong>Date:</strong> {{ courrier.date }}</p>
+<p><strong>Catégorie:</strong> {{ courrier.categorie }}</p>
+<p>
+  <strong>Fichier:</strong>
+  <a href="{{ courrier.fichier.url }}">{{ courrier.fichier.name }}</a>
+</p>
+<p><strong>ID du courrier:</strong> {{ pk }}</p>
+
+<a href="{% url 'create_rappel' courrier_id=courrier.id %}"
+  ><button>Créer un rappel</button></a
+>
+
+{% endblock %}
